@@ -4,19 +4,21 @@
     <title>Codaisseurup</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= render "shared/navbar" %>
-
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <%= render 'shared/navbar' %>
 
     <div class="container">
+      <% if notice.present? %>
+        <p class="alert alert-info" role="alert"><%= notice %></p>
+      <% elsif alert.present? %>
+        <p class="alert alert-danger" role="alert"><%= alert %></p>
+      <% end %>
+
       <%= yield %>
     </div>
   </body>
-
 </html>
